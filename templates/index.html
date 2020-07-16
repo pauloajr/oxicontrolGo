@@ -1,19 +1,5 @@
 {{define "Index"}}
-<!doctype html>
-<html lang="pt-br">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
-  </head>
-  <nav class="navbar navbar-light bg-light mb-4">
-    <a class="navbar-brand" href="/">Controle do resultado do oxímetro</a>
-</nav>
+{{template "_head"}}
 
 <body>
     <div class="container">
@@ -25,7 +11,7 @@
                             <th>Data e Hora</th>
                             <th>Bati/Min</th>
                             <th>%SpO2</th>
-                            <th>Quantidade</th>
+                            <th>Ação</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,15 +20,30 @@
                             <td>{{.DataHora}}</td>
                             <td>{{.Batimentos}}</td>
                             <td>{{.NivelOxigenacao}}</td>
-                            <td>-</td>
+                            <td><a href="edit?id={{.Id}}"><button class="href btn btn-warning">Editar</button></a></td>
+                            <td><button onclick="onDelete('{{.Id}}')" class="btn btn-danger mb-2">Deletar</button></td>
                         </tr>
                         {{end}}
                     </tbody>
                 </table>
             </div>
         </section>
+        <div class="card-footer">
+            <!-- a.btn.btn-primary.mb-2 -->
+             <a href="/new" class="btn btn-primary mb-2">Adicionar</a>
+        </div>
+
 
     </div>
+
+    <script>
+        function onDelete(id){
+            let resposta = confirm("Tem certeza que deseja deletar?");
+            if (resposta == true) {
+                window.location = "/delete?id="+id;
+            }
+        }
+    </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

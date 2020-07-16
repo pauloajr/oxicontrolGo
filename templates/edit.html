@@ -1,0 +1,42 @@
+{{define "Edit"}}
+{{template "_head"}}
+<div class="container">
+
+    <body>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-5">Editando medição</h1>
+                <p class="lead">Insira os detalhes</p>
+            </div>
+        </div>
+        <form method="POST" action="update">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        <label for="bati-min">Bati/Min:</label>
+                        <input type="number" name="bati-min" class="form-control" value="{{.Batimentos}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        <label for="sp02">%SpO2:</label>
+                        <input type="number" name="sp02" class="form-control" step="1" value="{{.NivelOxigenacao}}">
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="id" value="{{.Id}}" />
+            <input type="hidden" name="dthr" value="{{.DataHora}}" />
+
+            <button type="submit" value="salvar" class="btn btn-success">Atualizar</button>
+            <a class="btn btn-info" href="/">Voltar</a>
+        </form>
+    </body>
+
+</html>
+</div>
+</body>
+
+</html>
+{{end}}
